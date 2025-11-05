@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SmartHouseSystem
+{
+    public class AirConditioner : Device, IEnergyConsumer
+    {
+
+        public string DeviceName => Name;
+       
+        public int PowerConsumption => 2000;
+
+        public double GetEnergyUsage(int hours)
+        {
+            if (IsOn == false)
+            {
+                return 0;
+            }
+            return PowerConsumption * hours / 1000;
+        }
+
+        public override void TurnOff()
+        {
+            IsOn = false;
+            Console.WriteLine($"{Name} зупинено.");
+        }
+
+        public override void TurnOn()
+        {
+            IsOn = true;
+            Console.WriteLine($"{Name} почав охолодження.");
+        }
+    }
+}
